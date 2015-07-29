@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" ng-app>
   
   <!-- *** home-head ****************************** -->
   <jsp:include page="core/home-head.jsp"></jsp:include>
@@ -16,6 +16,7 @@
         <h1>SIGaula - Sistema Integrado para Gestão de Aulas</h1>
       </div>
       <img alt="SIG" src="${ pageContext.request.contextPath }/resources/img/sig.png">
+      <br/>
     </div>
     <!--/ *** Begin page content ***************************** -->
 
