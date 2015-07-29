@@ -60,5 +60,12 @@
     <beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <beans:property name="entityManagerFactory" ref="entityManagerFactory" />
     </beans:bean> 	
+
+	<beans:bean class="java.lang.String" id="appName">
+		<beans:constructor-arg value="SIGaula"/>	
+	</beans:bean>
+	<beans:bean class="java.lang.String" id="appDescription">
+		<beans:constructor-arg value="Sistema Integrado para Gestão de Aulas"/>	
+	</beans:bean>
 	
 </beans:beans>

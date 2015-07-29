@@ -12,11 +12,27 @@
 
     <!-- *** Begin page content ***************************** -->
     <div class="container">
-      <div class="page-header">
-        <h1>SIGaula - Sistema Integrado para Gestão de Aulas</h1>
-      </div>
-      <img alt="SIG" src="${ pageContext.request.contextPath }/resources/img/sig.png">
-      <br/>
+      	<div class="page-header">
+        	<h1>
+        		<img alt="SIG" src="${ pageContext.request.contextPath }/resources/img/sig.png" width="100px"> 
+        		${ appName }&nbsp; 
+        		<small>
+        			<c:if test="${ module_caption_add != null }">
+		        		<a href="${ module_url_add }" class="btn btn-success pull-right">
+		        			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		        			${ module_caption_add }
+		        		</a>
+        			</c:if>
+        			${ module_include != null ? moduleDescription : appDescription }
+        		</small>
+        		
+        	</h1>
+      	</div>
+      	<br/>
+     
+      	<c:if test="${ module_include != null }">
+      		<jsp:include page="${ module_include }"></jsp:include>
+      	</c:if>
     </div>
     <!--/ *** Begin page content ***************************** -->
 
