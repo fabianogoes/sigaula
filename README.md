@@ -1,5 +1,5 @@
 # SIGaula
-### Sistema Gerenciador de Aulas
+### SIGaula - Sistema Integrado para Gestão de Aulas
 
 *Configure Variable Environment in Project Run*   
 ``` 
