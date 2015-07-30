@@ -21,8 +21,11 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="${ pageContext.request.contextPath }/resources/bootstrap/js/ie-emulation-modes-warning.js"></script>
 
-	<!-- AngularJS -->
+	<!-- Camada AngularJS -->
 	<script src="${ pageContext.request.contextPath }/resources/angular-1.4.3/angular.min.js"></script>
+    <script src="${ pageContext.request.contextPath }/resources/core/app.js"></script>
+    <script src="${ pageContext.request.contextPath }/resources/core/controller/AlunoController.js"></script>
+	
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
