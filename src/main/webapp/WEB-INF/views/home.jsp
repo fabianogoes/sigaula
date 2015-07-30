@@ -18,10 +18,10 @@
         		${ appName }&nbsp; 
         		<small>
         			<c:if test="${ module_caption_add != null }">
-		        		<a href="${ module_url_add }" class="btn btn-success pull-right">
-		        			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		        			${ module_caption_add }
-		        		</a>
+<%-- 		        		<a href="${ module_url_add }" class="btn btn-success pull-right"> --%>
+<!-- 		        			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> -->
+<%-- 		        			${ module_caption_add } --%>
+<!-- 		        		</a> -->
         			</c:if>
         			${ module_include != null ? moduleDescription : appDescription }
         		</small>

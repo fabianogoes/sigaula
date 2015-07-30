@@ -7,6 +7,7 @@
   	<div class="panel-body">
     	
     	<form ng-submit="ctrl.submit()" name="frmAluno">
+			<input type="text" name="txtId" ng-model="ctrl.aluno.id">    	
     		<div class="row">
     			<div class="col-md-6">
 					<div class="form-group" ng-class="{ 'has-error': frmAluno.txtNome.$invalid && frmAluno.txtNome.$dirty}">
@@ -15,7 +16,8 @@
 		    			       name="txtNome" 
 		    			       class="form-control" 
 		    			       ng-model="ctrl.aluno.nome"
-		    			       required 
+		    			       required  
+		    			       autofocus 
 		    			       ng-minlength="3"
 		    			       placeholder="Nome...">
 		    			<div class="error text-danger" ng-show="frmAluno.txtNome.$invalid && frmAluno.txtNome.$dirty">
