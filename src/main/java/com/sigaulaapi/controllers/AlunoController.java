@@ -23,10 +23,10 @@ public class AlunoController extends BaseController {
 	private Long id = 1L;
 	
 	public AlunoController() {
-		//this.alunos.add(new Aluno(1L, "Fabiano", "fabiano@gmail.com"));
-		//this.alunos.add(new Aluno(2L, "Dulci", "dulci@gmail.com"));
-		//this.alunos.add(new Aluno(2L, "Leticia", "leticia@gmail.com"));
-		//this.alunos.add(new Aluno(2L, "Davi", "davi@gmail.com"));
+		this.alunos.add(new Aluno(1L, "Fabiano", "fabiano@gmail.com"));
+		this.alunos.add(new Aluno(2L, "Dulci", "dulci@gmail.com"));
+		this.alunos.add(new Aluno(2L, "Leticia", "leticia@gmail.com"));
+		this.alunos.add(new Aluno(2L, "Davi", "davi@gmail.com"));
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
@@ -37,16 +37,15 @@ public class AlunoController extends BaseController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public ModelAndView list(){
+	@RequestMapping(value="/list", method=RequestMethod.GET, produces="application/json")
+	public @ResponseBody ResponseEntity<String> list(){
 		System.out.println( "list()..."  );
-		ModelAndView mv = new ModelAndView("home");
-		mv.addObject("module_include", "aluno/aluno-list.jsp");
-		mv.addObject("moduleDescription", "Cadastro de Alunos");
-		mv.addObject("module_url_add", "/sigaula/aluno/add");
-		mv.addObject("module_caption_add", "Cadastrar novo Aluno");
-		mv.addObject("list", this.alunos);
-		return mv;
+		try {
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.alunos), HttpStatus.CREATED);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST, consumes="application/json", produces="application/json")
