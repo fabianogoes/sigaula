@@ -53,7 +53,7 @@
         <beans:property name="jpaVendorAdapter">
 	        <beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </beans:property>
-        <beans:property name="persistenceUnitName" value="SIGaulaJPADev" />
+        <beans:property name="persistenceUnitName" value="SIGaulaJPA" />
     </beans:bean>	
 	
     <tx:annotation-driven/>
