@@ -2,7 +2,8 @@
 
 var app = angular.module('app', ['ngRoute']);
 
-var SERVER_APP = '/sigaula';
+//var SERVER_APP = '/sigaula';
+var SERVER_APP = '/sigaula.herokuapp.com';
 
 app.config(['$routeProvider', function($routeProvider) {
         
