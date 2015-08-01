@@ -15,7 +15,7 @@
     </persistence-unit>
     
     <persistence-unit name="SIGaulaJPADev" transaction-type="RESOURCE_LOCAL">
-        <description>SIGaulaJPA</description>
+        <description>SIGaulaJPADev</description>
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
