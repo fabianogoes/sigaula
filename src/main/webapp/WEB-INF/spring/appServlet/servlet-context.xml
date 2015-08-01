@@ -24,7 +24,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.sigaulaapi" />
+	<context:component-scan base-package="com.sigaula" />
 	
 	<beans:bean class="java.net.URI" id="dbUrl">
     	<beans:constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
@@ -62,25 +62,4 @@
         <beans:property name="entityManagerFactory" ref="entityManagerFactory" />
     </beans:bean> 	
 
-	<beans:bean class="java.lang.String" id="appName">
-		<beans:constructor-arg value="SIGaula"/>	
-	</beans:bean>
-	<beans:bean class="java.lang.String" id="appDescription">
-		<beans:constructor-arg value="Sistema Integrado para Gestão de Aulas"/>	
-	</beans:bean>
-	
-<!-- 	<mvc:cors> -->
-<!-- 		<mvc:mapping path="/api/**" -->
-<!-- 			allowed-origins="http://localhost, http://127.0.0.1" -->
-<!-- 			allowed-methods="GET, PUT" -->
-<!-- 			allowed-headers="header1, header2, header3" -->
-<!-- 			exposed-headers="header1, header2" allow-credentials="false" -->
-<!-- 			max-age="123" /> -->
-
-<!-- 		<mvc:mapping path="/resources/**" -->
-
-<!-- 		allowed-origins="http://127.0.0.1" /> -->
-
-<!-- 	</mvc:cors> -->
-	
 </beans:beans>

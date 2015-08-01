@@ -23,8 +23,12 @@
 
 	<!-- Camada AngularJS -->
 	<script src="${ pageContext.request.contextPath }/resources/angular-1.4.3/angular.min.js"></script>
+	<script src="${ pageContext.request.contextPath }/resources/angular-1.4.3/angular-route.js"></script>
     <script src="${ pageContext.request.contextPath }/resources/core/app.js"></script>
-    <script src="${ pageContext.request.contextPath }/resources/core/controller/AlunoController.js"></script>
+    <script src="${ pageContext.request.contextPath }/resources/core/controllers/home-controller.js"></script>
+    <script src="${ pageContext.request.contextPath }/resources/core/controllers/sobre-controller.js"></script>
+    <script src="${ pageContext.request.contextPath }/resources/core/controllers/aluno-list-controller.js"></script>
+    <script src="${ pageContext.request.contextPath }/resources/core/controllers/aluno-detail-controller.js"></script>
 	
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

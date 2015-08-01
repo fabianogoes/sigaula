@@ -1,4 +1,4 @@
-package com.sigaulaapi.filters;
+package com.sigaula.filters;
 
 import java.io.IOException;
 

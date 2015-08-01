@@ -31,7 +31,7 @@
 	<!-- Add this to your web.xml to enable "CORS" -->
 	<filter>
 		<filter-name>cors</filter-name>
-		<filter-class>com.sigaulaapi.filters.CORSFilter</filter-class>
+		<filter-class>com.sigaula.filters.CORSFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
