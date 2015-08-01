@@ -33,6 +33,10 @@
 	<beans:bean class="java.lang.String" id="dsEnvironment">
     	<beans:constructor-arg value="#{systemEnvironment['DATASOURCE_ENV'] == null ? 'dsProd' : systemEnvironment['DATASOURCE_ENV']}"/>
 	</beans:bean>
+
+	<beans:bean class="java.lang.String" id="persistenceUnitEnvironment">
+    	<beans:constructor-arg value="#{@dsEnvironment == 'dsProd' ? 'SIGaulaJPA' : 'SIGaulaJPADev'}"/>
+	</beans:bean>
 	
 	<beans:bean id="dsProd" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <beans:property name="driverClassName" value="org.postgresql.Driver" />
@@ -53,7 +57,7 @@
         <beans:property name="jpaVendorAdapter">
 	        <beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </beans:property>
-        <beans:property name="persistenceUnitName" value="#{systemEnvironment['DATASOURCE_ENV'] == 'dsProd' ? 'SIGaulaJPA' : 'SIGaulaJPADev'" />
+        <beans:property name="persistenceUnitName" value="#{@persistenceUnitEnvironment}" />
     </beans:bean>	
 	
     <tx:annotation-driven/>
