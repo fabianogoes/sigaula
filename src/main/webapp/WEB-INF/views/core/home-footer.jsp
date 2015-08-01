@@ -14,3 +14,9 @@
         </p>
       </div>
     </footer>
+    
+
+	<a href="https://github.com/fabianogoes/sigaula" target="_blank">
+    	<img style="position: absolute; top: 0; right: 0; border: 0; z-index: 999999"
+             src="${ pageContext.request.contextPath }/resources/img/forkme.png" alt="Fork me on GitHub">
+    </a>    
