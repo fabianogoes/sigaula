@@ -31,7 +31,7 @@ app.controller('AlunoDetailController', ['$http', '$location', '$window', '$rout
 	}
 	
 	self.submit = function(){
-		console.log( 'aluno save >>> '+JSON.stringify(self.aluno) );
+		//console.log( 'aluno save >>> '+JSON.stringify(self.aluno) );
 		$http.post( SERVER_APP + '/aluno/save', self.aluno).then(function(resp){
 			$window.location.href = SERVER_APP + "/#/aluno";
 		});
