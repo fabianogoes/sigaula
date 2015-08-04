@@ -7,7 +7,7 @@ app.controller('AlunoDetailController', ['$http', '$location', '$window', '$rout
 		
 		if( $routeParams.id != undefined ){
 			console.log( 'id = '+$routeParams.id );
-			$http.get( SERVER_APP + '/aluno/edit/'+$routeParams.id ).then(function(resp){
+			$http.get( SERVER_APP + '/aluno/'+$routeParams.id ).then(function(resp){
 				console.log( resp.data );
 				self.aluno = resp.data;
 			});
@@ -32,7 +32,7 @@ app.controller('AlunoDetailController', ['$http', '$location', '$window', '$rout
 	
 	self.submit = function(){
 		//console.log( 'aluno save >>> '+JSON.stringify(self.aluno) );
-		$http.post( SERVER_APP + '/aluno/save', self.aluno).then(function(resp){
+		$http.post( SERVER_APP + '/aluno/', self.aluno).then(function(resp){
 			$window.location.href = SERVER_APP + "/#/aluno";
 		});
 	}

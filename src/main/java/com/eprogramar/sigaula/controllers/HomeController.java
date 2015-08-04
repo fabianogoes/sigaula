@@ -1,4 +1,4 @@
-package com.sigaula.controllers;
+package com.eprogramar.sigaula.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String root() {
@@ -17,13 +18,13 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home() {
+	@RequestMapping("/welcome")
+	public String welcome() {
 		logger.info("home()...");
 		return "core/home-description";
 	}
 	
-	@RequestMapping(value = "/sobre", method = RequestMethod.GET)
+	@RequestMapping("/about")
 	public String sobre() {
 		logger.info("sobre()...");
 		return "core/sobre";

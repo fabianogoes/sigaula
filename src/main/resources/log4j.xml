@@ -11,7 +11,7 @@
 	</appender>
 
 	<!-- Application Loggers -->
-	<logger name="com.sigaula">
+	<logger name="com.eprogramar.sigaula">
 		<level value="info" />
 	</logger>
 
@@ -32,10 +32,10 @@
 		<level value="info" />
 	</logger>
 
-	<logger name="org.hibernate">
-		<level value="ALL" />
-		<appender-ref ref="FILE" />
-	</logger>
+<!-- 	<logger name="org.hibernate"> -->
+<!-- 		<level value="ALL" /> -->
+<!-- 		<appender-ref ref="FILE" /> -->
+<!-- 	</logger> -->
 
 
 	<!-- Root Logger -->

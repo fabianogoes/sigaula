@@ -1,4 +1,4 @@
-package com.sigaula.filters;
+package com.eprogramar.sigaula.filters;
 
 import java.io.IOException;
 

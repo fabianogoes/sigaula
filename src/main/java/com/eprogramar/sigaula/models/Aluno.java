@@ -1,9 +1,14 @@
-package com.sigaula.models;
+package com.eprogramar.sigaula.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Aluno {
@@ -15,6 +20,9 @@ public class Aluno {
 	private String nome;
 	@Column(nullable=false)
 	private String email;
+	
+	@OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Telefone> telefones;
 
 	public Aluno() {
 	}
@@ -47,6 +55,14 @@ public class Aluno {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
 	}
 
 	@Override

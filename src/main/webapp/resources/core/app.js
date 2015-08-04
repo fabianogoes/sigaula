@@ -9,11 +9,29 @@ app.config(['$routeProvider', function($routeProvider) {
         
         $routeProvider
                 //.when('/',                    { redirectTo: '/'})
-                .when('/', { templateUrl: SERVER_APP + '/home'})
-                .when('/sobre', { templateUrl: SERVER_APP + '/sobre'})
-                .when('/aluno', { templateUrl: SERVER_APP + '/aluno/'})
-                .when('/aluno/add', { templateUrl: SERVER_APP + '/aluno/form'})
-                .when('/aluno/edit/:id', { templateUrl: SERVER_APP + '/aluno/form'})
+        		/**
+        		 * Show Page Welcome
+        		 */
+                .when('/', { templateUrl: SERVER_APP + '/welcome'})
+                /**
+                 * Show Page About
+                 */
+                .when('/sobre', { templateUrl: SERVER_APP + '/about'})
+                /**
+                 * Show Page List
+                 */
+                .when('/aluno', { templateUrl: SERVER_APP + '/aluno/pageList'})
+                /**
+                 * Show Page Form to Create
+                 */
+                .when('/aluno/form', { templateUrl: SERVER_APP + '/aluno/pageForm'})
+                /**
+                 * Show Page Form to Update
+                 */
+                .when('/aluno/:id', { templateUrl: SERVER_APP + '/aluno/pageForm'})
+                /**
+                 * Show Page Welcome
+                 */
                 .otherwise({redirectTo: '/'});
 }]);  
 

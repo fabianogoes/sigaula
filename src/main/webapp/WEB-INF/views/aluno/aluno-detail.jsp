@@ -45,6 +45,25 @@
 			  			</div>
 			  		</div>
 	    		</div>
+	    		<br/>
+	    		
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title"><span class="glyphicon glyphicon-phone-alt text-primary pull-right" aria-hidden="true"></span> Telefones</h3>
+				  </div>
+				  <div class="panel-body">
+				   
+				        <table class="table">
+				      		<tr ng-repeat="telefone in ctrl.aluno.telefones">
+				      			<td>
+				      				<span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+				      				{{ telefone.numero }}
+				      			</td>
+				      		</tr>
+				        </table>				   
+				   
+				  </div>
+				</div>	    		
 	    		
 	    		<hr/>
 	    		

@@ -19,19 +19,33 @@ app.controller('AlunoListController', ['$http', '$location', '$window',
 	}
 
 	self.list = function(){
-		$http.get( SERVER_APP + '/aluno/list' ).then(function(resp){
+		$http.get( SERVER_APP + '/aluno/' ).then(function(resp){
 			self.alunos = resp.data;
 		});
 	}
 	
 	self.remove = function(id){
-		$http.get( SERVER_APP + '/aluno/remove/'+id).then(function(resp){
+		$http.get( SERVER_APP + '/aluno/'+id+'/delete').then(function(resp){
 			self.alunos = resp.data;
 		});
 	}
 	
 	self.atualizar = function(){
 		self.list();
+	}
+	
+	self.verTelefones = function( aluno ){
+		self.aluno = aluno;
+		$('#modalTelefones').modal('show');
+	}
+	
+	self.telefoneSubmit = function(){
+		self.telefone.aluno = self.aluno;
+		$http.post( SERVER_APP + '/aluno/telefone', self.telefone).then(function(resp){
+			self.aluno = resp.data;
+			$window.location.href = SERVER_APP + "/#/aluno";
+			self.telefone.numero = "";
+		});
 	}
 	
 	init();
