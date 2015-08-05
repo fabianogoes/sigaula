@@ -1,13 +1,12 @@
 var app = angular.module('app', ['ngRoute']);
 
-var url = "";
-var SERVER_APP = '/sigaula';
+var SERVER_APP;
 
 
 app.$inject = ["$rootScope", "$window"];
 app.run(["$rootScope", "$window", function ($rootScope, $window) {
 	console.log( "$window.location.href = "+$window.location.href );
-	SERVER_APP = $window.location.href.contains( "heroku" ) ? "https://sigaula.herokuapp.com" : SERVER_APP; 
+	SERVER_APP = $window.location.href.contains( "heroku" ) ? "https://sigaula.herokuapp.com" : "/sigaula"; 
 }] );
 
 console.log( "SERVER_APP = "+SERVER_APP );
@@ -17,6 +16,7 @@ console.log( "SERVER_APP = "+SERVER_APP );
 
 app.config(['$routeProvider', function($routeProvider) {
         
+	    SERVER_APP = $window.location.href.contains( "herokuapp.com" ) ? "https://sigaula.herokuapp.com" : "/sigaula";
 	
         $routeProvider
                 //.when('/',                    { redirectTo: '/'})
