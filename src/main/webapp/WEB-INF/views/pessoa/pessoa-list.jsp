@@ -1,4 +1,4 @@
-<div ng-controller="AlunoListController as ctrl">
+<div ng-controller="PessoaListController as ctrl">
 
 	<jsp:include page="../core/home-description.jsp"></jsp:include>
 
@@ -6,9 +6,9 @@
 		<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Atualizar &nbsp;   
 	</a>
 
-	<a href="#/aluno/form">
+	<a href="#/pessoa/{{ ctrl.module }}/form">
 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		Adicionar novo Aluno
+		Adicionar novo {{ ctrl.moduleNameSingular }}
 	</a>
 
 
@@ -29,20 +29,20 @@
 						</tr>
 					</thead>
 					<tbody>
-							<tr ng-repeat="aluno in ctrl.alunos">
-								<td>{{ aluno.id }}</td>
-								<td>{{ aluno.nome }}</td>
-								<td>{{ aluno.email }}</td>
+							<tr ng-repeat="pessoa in ctrl.pessoas">
+								<td>{{ pessoa.id }}</td>
+								<td>{{ pessoa.nome }}</td>
+								<td>{{ pessoa.email }}</td>
 								<td class="text-center">
-									<a href ng-click="ctrl.verTelefones( aluno )" class="btn btn-xs btn-default" title="Ver Telefones...">
+									<a href ng-click="ctrl.verTelefones( pessoa )" class="btn btn-xs btn-default" title="Ver Telefones...">
 										<span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
 									</a>
 								</td>
 								<td class="text-center">
-									<a href="#/aluno/{{ aluno.id }}" class="btn btn-xs btn-warning" title="Editar registro...">
+									<a href="#/pessoa/{{ ctrl.module }}/{{ pessoa.id }}" class="btn btn-xs btn-warning" title="Editar registro...">
 										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 									</a>
-									<a href ng-click="ctrl.remove( aluno.id )" class="btn btn-xs btn-danger" title="Deletar registro...">
+									<a href ng-click="ctrl.remove( pessoa.id )" class="btn btn-xs btn-danger" title="Deletar registro...">
 										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 									</a>
 								</td>
@@ -61,9 +61,9 @@
 	      
 	      <div class="modal-body">
 	        	
-	            <h5>Aluno: <span class="badge">{{ ctrl.aluno.nome }}</span> </h5>	
+	            <h5>{{ ctrl.moduleNameSingular }}: <span class="badge">{{ ctrl.pessoa.nome }}</span> </h5>	
 		        <table class="table table-bordered">
-		      		<tr ng-repeat="telefone in ctrl.aluno.telefones">
+		      		<tr ng-repeat="telefone in ctrl.pessoa.telefones">
 		      			<td>{{ telefone.numero }}</td>
 		      		</tr>
 		        </table>

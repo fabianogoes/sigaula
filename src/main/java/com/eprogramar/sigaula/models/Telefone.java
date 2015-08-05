@@ -18,21 +18,21 @@ public class Telefone {
 	/**
 	 * (11)98765-0987
 	 */
-	@Column(length = 14)	
+	@Column(length = 14, nullable=false)	
 	private String numero; 
 
 	@ManyToOne
 	@JsonIgnore
-	@JoinColumn(nullable = false, updatable = true)
-	private Aluno aluno;
+	@JoinColumn(name = "pessoa_id", nullable = false, updatable = true)
+	private Pessoa pessoa;
 
 	public Telefone() {
 	}
 
-	public Telefone(Long id, String numero, Aluno aluno) {
+	public Telefone(Long id, String numero, Pessoa pessoa) {
 		this.id = id;
 		this.numero = numero;
-		this.aluno = aluno;
+		this.pessoa = pessoa;
 	}
 
 	public Long getId() {
@@ -51,17 +51,17 @@ public class Telefone {
 		this.numero = numero;
 	}
 
-	public Aluno getAluno() {
-		return aluno;
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	@Override
 	public String toString() {
-		return "Telefone [id=" + id + ", numero=" + numero + ", aluno=" + aluno
+		return "Telefone [id=" + id + ", numero=" + numero + ", pessoa=" + pessoa
 				+ "]";
 	}
 

@@ -11,92 +11,79 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.eprogramar.sigaula.models.Aluno;
+import com.eprogramar.sigaula.models.Pessoa;
+import com.eprogramar.sigaula.models.PessoaTipo;
 import com.eprogramar.sigaula.models.Telefone;
-import com.eprogramar.sigaula.repositories.AlunoRepository;
+import com.eprogramar.sigaula.repositories.PessoaRepository;
 import com.eprogramar.sigaula.repositories.TelefoneRepository;
 
 @Controller
-@RequestMapping("/aluno")
-public class AlunoController {
+@RequestMapping("/pessoa")
+public class PessoaController {
 
 	@Autowired
-	private AlunoRepository repository;
+	private PessoaRepository pessoaRepository;
 	
 	@Autowired
 	private TelefoneRepository telefoneRepository;
 	
 	@RequestMapping("pageList")
 	public String pageList(){
-		return "aluno/aluno-list";
+		return "pessoa/pessoa-list";
 	}
 
 	@RequestMapping("/pageForm")
 	public String pageForm(){
-		return "aluno/aluno-detail";
+		return "pessoa/pessoa-detail";
 	}
 	
-	@RequestMapping(produces="application/json")
-	public @ResponseBody ResponseEntity<String> listAll(){
+	@RequestMapping(value="/tipo/{tipo}", produces="application/json; charset=utf-8")
+	public @ResponseBody ResponseEntity<String> findByTipo(@PathVariable("tipo") PessoaTipo tipo){
 		try {
-			
-			//Aluno aluno = this.repository.findOne(1L);
-			//Telefone telefone = new Telefone(null, "(11)98765-1234", aluno);
-			//this.telefoneRepository.save(telefone);
-			
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.repository.findAll()), HttpStatus.CREATED);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.pessoaRepository.findByTipo(tipo)), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, consumes="application/json", produces="application/json")
-	public @ResponseBody ResponseEntity<String> save(@RequestBody Aluno aluno){
+	@RequestMapping(method=RequestMethod.POST, consumes="application/json; charset=utf-8", produces="application/json; charset=utf-8")
+	public @ResponseBody ResponseEntity<String> save(@RequestBody Pessoa pessoa){
 		try {
-			System.out.println( "save( "+aluno+ ")" );
-			this.repository.save( aluno );
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.repository.findAll()), HttpStatus.CREATED);
+			this.pessoaRepository.save( pessoa );
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.pessoaRepository.findAll()), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
-	@RequestMapping(value="/{id}", produces="application/json")
+	@RequestMapping(value="/{id}", produces="application/json; charset=utf-8")
 	public @ResponseBody ResponseEntity<String> get(@PathVariable("id") Long id){
 		try {
-			Aluno aluno = this.repository.findOne( id );
-			
-			System.out.println( ">>>>>>>>>>>>> Telefones <<<<<<<<<<<<<<<<<" );
-			for (Telefone telefone : aluno.getTelefones()) {
-				System.out.println( telefone );
-			}
-			
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(aluno), HttpStatus.CREATED);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString( this.pessoaRepository.findOne( id ) ), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}	
 	
-	@RequestMapping(value="/{id}/delete", produces="application/json")
+	@RequestMapping(value="/{id}/delete", produces="application/json; charset=utf-8")
 	public @ResponseBody ResponseEntity<String> delete(@PathVariable("id") Long id){
 		try {
-			this.repository.delete( id );
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.repository.findAll()), HttpStatus.CREATED);
+			this.pessoaRepository.delete( id );
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.pessoaRepository.findAll()), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}	
 	
-	@RequestMapping(value="/telefone", method=RequestMethod.POST, consumes="application/json", produces="application/json")
+	@RequestMapping(value="/telefone", method=RequestMethod.POST, consumes="application/json; charset=utf-8", produces="application/json; charset=utf-8")
 	public @ResponseBody ResponseEntity<String> telefone(@RequestBody Telefone telefone){
 		try {
-			System.out.println( "telefone( "+telefone+ ")" );
 			this.telefoneRepository.save( telefone );
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.repository.findOne(telefone.getAluno().getId())), HttpStatus.CREATED);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.pessoaRepository.findOne(telefone.getPessoa().getId())), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
