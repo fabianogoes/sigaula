@@ -6,6 +6,7 @@ var SERVER_APP = '/sigaula';
 
 app.$inject = ["$rootScope", "$window"];
 app.run(["$rootScope", "$window", function ($rootScope, $window) {
+	console.log( "$window.location.href = "+$window.location.href );
 	SERVER_APP = $window.location.href.contains( "heroku" ) ? "https://sigaula.herokuapp.com" : SERVER_APP; 
 }] );
 
