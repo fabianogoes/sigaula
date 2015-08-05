@@ -13,17 +13,18 @@ app.controller('PessoaListController', ['$http', '$location', '$window', '$route
 		 */
 		$("#id_menu_home").removeClass( "active" );
 		$("#id_menu_sobre").removeClass( "active" );
+		$("#id_menu_curso").removeClass( "active" );
 		
 		if( $window.location.href.contains('aluno') ){
 			self.moduleNameSingular = "Aluno";
-			self.moduleNamePlural = self.moduleNameSingular+"";
+			self.moduleNamePlural = self.moduleNameSingular+"s";
 			self.module = self.moduleNameSingular.toLowerCase();
 			self.pessoa.tipo = "ALUNO";
 			$("#id_menu_professor").removeClass( "active" );
 			$("#id_menu_aluno").addClass( "active" );
 		}else{
 			self.moduleNameSingular = "Professor";
-			self.moduleNamePlural = self.moduleNameSingular+"";
+			self.moduleNamePlural = self.moduleNameSingular+"s";
 			self.module = self.moduleNameSingular.toLowerCase();
 			self.pessoa.tipo = "PROFESSOR";
 			$("#id_menu_aluno").removeClass( "active" );
