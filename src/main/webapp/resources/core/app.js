@@ -1,8 +1,7 @@
 var app = angular.module('app', ['ngRoute']);
 
-var SERVER_APP = "/sigaula";
-console.log( "init..." + SERVER_APP );
-
+//var SERVER_APP = "/sigaula";
+var SERVER_APP = "https://sigaula.herokuapp.com";
 
 //app.$inject = ["$rootScope", "$window"];
 //app.run(["$rootScope", "$window", function ($rootScope, $window) {
