@@ -1,5 +1,6 @@
 package com.eprogramar.sigaula.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,19 +9,19 @@ import javax.persistence.Id;
 @Entity
 public class Curso {
 
-	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO)	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+	@Column(nullable = false, length = 50)
 	private String nome;
-	private String telefone;
 
 	public Curso() {
 	}
 
-	public Curso(Long id, String nome, String telefone) {
+	public Curso(Long id, String nome) {
 		this.id = id;
 		this.nome = nome;
-		this.telefone = telefone;
 	}
 
 	public Long getId() {
@@ -39,18 +40,9 @@ public class Curso {
 		this.nome = nome;
 	}
 
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
 	@Override
 	public String toString() {
-		return "Curso [id=" + id + ", nome=" + nome + ", telefone=" + telefone
-				+ "]";
+		return "Curso [id=" + id + ", nome=" + nome + "]";
 	}
 
 }

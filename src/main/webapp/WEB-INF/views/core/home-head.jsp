@@ -29,6 +29,8 @@
     <script src="${ pageContext.request.contextPath }/resources/core/controllers/sobre-controller.js"></script>
     <script src="${ pageContext.request.contextPath }/resources/core/controllers/pessoa-list-controller.js"></script>
     <script src="${ pageContext.request.contextPath }/resources/core/controllers/pessoa-detail-controller.js"></script>
+    <script src="${ pageContext.request.contextPath }/resources/core/controllers/curso-list-controller.js"></script>
+    <script src="${ pageContext.request.contextPath }/resources/core/controllers/curso-detail-controller.js"></script>
 	
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
