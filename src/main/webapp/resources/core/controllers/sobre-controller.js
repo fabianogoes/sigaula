@@ -14,6 +14,8 @@ app.controller('SobreController', ['$http', '$location', '$window',
 		 */
 		$("#id_menu_home").removeClass( "active" );
 		$("#id_menu_aluno").removeClass( "active" );
+		$("#id_menu_professor").removeClass( "active" );
+		$("#id_menu_curso").removeClass( "active" );
 		$("#id_menu_sobre").addClass( "active" );
 	}
 
