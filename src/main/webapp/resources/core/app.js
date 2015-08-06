@@ -13,6 +13,7 @@ var SERVER_APP = "https://sigaula.herokuapp.com";
 //	console.log( "$window.location.href = "+$window.location.href );
 //}] );
 
+
 app.config(['$routeProvider', function($routeProvider) {
 	
         $routeProvider
