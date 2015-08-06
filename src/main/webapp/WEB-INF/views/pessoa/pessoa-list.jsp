@@ -39,11 +39,11 @@
 									</a>
 								</td>
 								<td class="text-center">
-									<a href="#/pessoa/{{ ctrl.module }}/{{ pessoa.id }}" class="btn btn-xs btn-warning" title="Editar registro...">
-										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+									<a href="#/pessoa/{{ ctrl.module }}/{{ pessoa.id }}" class="btn btn-xs btn-default" title="Editar registro...">
+										<span class="glyphicon glyphicon-edit text-primary" aria-hidden="true"></span>
 									</a>
-									<a href ng-click="ctrl.remove( pessoa.id )" class="btn btn-xs btn-danger" title="Deletar registro...">
-										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									<a href ng-click="ctrl.remove( pessoa.id )" class="btn btn-xs btn-default" title="Deletar registro...">
+										<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
 									</a>
 								</td>
 							</tr>
@@ -55,32 +55,86 @@
 	</div> <!-- panel -->
 
  	<!-- Modal Telefones -->
-	<div class="modal fade bs-example-modal-sm" id="modalTelefones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog modal-sm" role="document">
+	<div class="modal fade" id="modalTelefones" role="dialog" aria-labelledby="gridSystemModalLabel">
+	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
-	      
+
 	      <div class="modal-body">
 	        	
-	            <h5>{{ ctrl.moduleNameSingular }}: <span class="badge">{{ ctrl.pessoa.nome }}</span> </h5>	
-		        <table class="table table-bordered">
-		      		<tr ng-repeat="telefone in ctrl.pessoa.telefones">
-		      			<td>{{ telefone.numero }}</td>
-		      		</tr>
+		        <table class="table table-condensed">
+		        	<thead>
+		        		<th class="col-md-1 text-center">DDD</th>
+		        		<th class="text-center">Número</th>
+		        		<th class="col-md-2 text-center">Tipo</th>
+		        		<th class="col-md-1 text-center">Principal</th>
+		        		<th class="col-md-1 text-center">
+		        			<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+		        		</th>
+		        	</thead>
+		        	<tbody>
+			      		<tr ng-repeat="telefone in ctrl.pessoa.telefones" class="text-center">
+			      			<td>{{ telefone.ddd }}</td>
+			      			<td>{{ telefone.numero }}</td>
+			      			<td>{{ telefone.tipo }}</td>
+			      			<td>
+			      				<span class="glyphicon glyphicon-ok text-success" ng-show="{{ telefone.principal }}" aria-hidden="true"></span>
+			      			</td>
+			      			<td>
+			      				<a href="">
+			      					<span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>
+			      				</a>
+			      			</td>
+			      		</tr>
+		        	</tbody>
 		        </table>
 		      
-		      <form name="frmTelefone" ng-submit="ctrl.telefoneSubmit()">
-		      	<input type="text" autofocus="autofocus" name="numero" ng-model="ctrl.telefone.numero" />
-		      	<button type="submit" class="btn btn-xs" >
-		      		<span class="glyphicon glyphicon-plus text-primary" aria-hidden="true"></span>
-		      	</button>
-	          </form>
-	        
+		      <br/>
+		      
+
+			<div class="panel panel-default">
+			  <div class="panel-heading">Cadastrar novo telefone para {{ ctrl.moduleNameSingular }}: <span class="badge">{{ ctrl.pessoa.nome }}</div>
+			  <div class="panel-body">
+
+			      <form class="form-inline" name="frmTelefone" ng-submit="ctrl.telefoneSubmit()">
+			      		<div class="form-group">
+					      	<input type="text" class="form-control text-center" name="ddd" ng-model="ctrl.telefone.ddd" size="5px" maxlength="2" placeholder="DDD" />
+			      		</div>
+				      	<div class="form-group">
+					      	<input type="text" class="form-control text-center" autofocus="autofocus" name="numero" size="19px" ng-model="ctrl.telefone.numero" maxlength="10" placeholder="Número" />
+			      		</div>
+			      		<div class="form-group">
+			      			<select class="form-control" name="tipo" ng-model="ctrl.telefone.tipo">
+			      				<option value="" selected>--- Selecione o Tipo ---</option>
+			      				<option value="RESIDENCIAL">RESIDENCIAL</option>
+								<option value="CELULAR">CELULAR</option>
+								<option value="COMERCIAL">COMERCIAL</option>
+								<option value="RECADO">RECADO</option>
+								<option value="OUTRO">OUTRO</option>
+			      			</select>
+			      		</div>
+			      		<div class="checkbox">
+						    <label>
+						      <input type="checkbox" name="principal" ng-model="ctrl.telefone.principal"> Principal
+						    </label>
+						</div>
+	
+						<br/><br/>
+			          <button type="submit" class="btn btn-primary">
+			      			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			      			Salvar
+			      	  </button>
+					  <button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+					  	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					  	Fechar
+					  </button>
+		          </form>
+
+
+			  </div>
+			</div>		      
+		      
 	      </div>
 	      
-	      <div class="modal-footer">
-    	      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
-          </div>
-          
 	    </div>
 	  </div>
 	</div> 	

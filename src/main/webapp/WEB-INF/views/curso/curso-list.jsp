@@ -20,7 +20,13 @@
 					<thead>
 						<tr>
 							<th class="col-md-1">ID</th>
-							<th class="col-md-5">Nome</th>
+							<th>Nome</th>
+							<th class="col-md-1 text-center">Tipo</th>
+							<th class="col-md-1">Categoria</th>
+							<th class="col-md-2 text-center">Carga Horária</th>
+							<th class="col-md-1 text-center">Preço</th>
+							<th class="col-md-2 text-center" title="Tempo de duração por aula">Tempo. Aula</th>
+							<th class="col-md-2">Requisitos</th>
 							<th class="col-md-1 text-center">
 								<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
 							</th>
@@ -30,12 +36,18 @@
 							<tr ng-repeat="curso in ctrl.cursos">
 								<td>{{ curso.id }}</td>
 								<td>{{ curso.nome }}</td>
+								<td class="col-md-1 text-center">{{ curso.tipo }}</td>
+								<td>{{ curso.categoria }}</td>
+								<td class="text-center">{{ curso.cargaHoraria }}</td>
+								<td class="text-center">{{ curso.preco }}</td>
+								<td class="text-center">{{ curso.duracaoAula }}</td>
+								<td>{{ curso.requisitos }}</td>
 								<td class="text-center">
-									<a href="#/curso/{{ curso.id }}" class="btn btn-xs btn-warning" title="Editar registro...">
-										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+									<a href="#/curso/{{ curso.id }}" class="btn btn-xs btn-default" title="Editar registro...">
+										<span class="glyphicon glyphicon-edit text-primary" aria-hidden="true"></span>
 									</a>
-									<a href ng-click="ctrl.remove( curso.id )" class="btn btn-xs btn-danger" title="Deletar registro...">
-										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									<a href ng-click="ctrl.remove( curso.id )" class="btn btn-xs btn-default" title="Deletar registro...">
+										<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
 									</a>
 								</td>
 							</tr>

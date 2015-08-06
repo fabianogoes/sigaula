@@ -31,8 +31,8 @@ app.controller('CursoDetailController', ['$http', '$location', '$window', '$rout
 	}
 
 	self.submit = function(){
+		console.log( self.curso );
 		$http.post( SERVER_APP + '/curso/', self.curso).then(function(resp){
-			console.log( self.curso );
 			$window.location.href = SERVER_APP + "/#/curso/";
 		});
 	}

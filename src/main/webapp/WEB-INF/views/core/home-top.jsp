@@ -15,9 +15,9 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active" id="id_menu_home"><a href="#/" ng-click="ctrlHome.setActiveMenu()">Home</a></li>
-            <li class="" id="id_menu_aluno"><a href="#/pessoa/aluno">Alunos</a></li>
-            <li class="" id="id_menu_professor"><a href="#/pessoa/professor">Professores</a></li>
             <li class="" id="id_menu_curso"><a href="#/curso">Cursos</a></li>
+            <li class="" id="id_menu_professor"><a href="#/pessoa/professor">Professores</a></li>
+            <li class="" id="id_menu_aluno"><a href="#/pessoa/aluno">Alunos</a></li>
             <li class="" id="id_menu_sobre"><a href="#/sobre">Sobre</a></li>
           </ul>
         </div><!--/.nav-collapse -->

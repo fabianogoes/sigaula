@@ -48,6 +48,7 @@ public class CursoController {
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json; charset=utf-8", produces="application/json; charset=utf-8")
 	public @ResponseBody ResponseEntity<String> save(@RequestBody Curso curso){
 		try {
+			System.out.println( curso );
 			this.cursoRepository.save( curso );
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.cursoRepository.findAll()), HttpStatus.CREATED);
 		} catch(Exception e) {

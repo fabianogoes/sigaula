@@ -29,7 +29,7 @@ package com.eprogramar.sigaula.models;
  * @version 1.0
  *
  */
-public enum PessoaTipo {
-	ALUNO,
-	PROFESSOR
+public enum CursoTipo {
+	INDIVIDUAL,
+	GRUPO
 }

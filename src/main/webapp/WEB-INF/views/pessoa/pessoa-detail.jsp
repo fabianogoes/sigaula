@@ -2,7 +2,7 @@
 
 	<jsp:include page="../core/home-description.jsp"></jsp:include>
 
-	<div class="panel panel-primary">
+	<div class="panel panel-default">
 	  	<div class="panel-heading">
 	    	<h3 class="panel-title">{{ ctrl.moduleNameSingular }} <span class="badge pull-right">ID: {{ ctrl.pessoa.id }}</span> </h3>
 	  	</div>
