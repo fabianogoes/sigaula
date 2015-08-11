@@ -2,8 +2,8 @@ app.controller('AlunoListController', ['$http', '$location', '$window', '$routeP
                                    function($http, $location, $window, $routeParams){
 	var self = this;
 	
-	self.aluno = {};
-	self.telefone = {}
+	//self.aluno = {};
+	//self.telefone = {}
 	
 	var init = function(){
 		
@@ -29,6 +29,7 @@ app.controller('AlunoListController', ['$http', '$location', '$window', '$routeP
 	self.list = function(){
 		$http.get( SERVER_APP + '/aluno' ).then(function(resp){
 			self.alunos = resp.data;
+			console.log( "list()...." );
 		});
 	}
 	
@@ -52,8 +53,8 @@ app.controller('AlunoListController', ['$http', '$location', '$window', '$routeP
 		console.log( self.telefone );
 		$http.post( SERVER_APP + '/aluno/telefone', self.telefone).then(function(resp){
 			self.aluno = resp.data;
-			$window.location.href = SERVER_APP + "/#/aluno";
-			self.telefone.numero = "";
+			//$window.location.href = SERVER_APP + "/#/aluno";
+			self.telefone = null;
 		});
 	}
 	

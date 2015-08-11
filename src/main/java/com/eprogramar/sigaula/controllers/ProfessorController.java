@@ -1,7 +1,5 @@
 package com.eprogramar.sigaula.controllers;
 
-import java.util.List;
-
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -84,8 +82,8 @@ public class ProfessorController {
 	public @ResponseBody ResponseEntity<String> telefone(@RequestBody Telefone telefone){
 		try {
 			this.telefoneRepository.save( telefone );
-			List<Professor> professores = null; //this.professorRepository.findOne(telefone.getPessoa().getId())
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString( professores ), HttpStatus.CREATED);
+			Professor professor = this.professorRepository.findOne(telefone.getPessoa().getId());
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString( professor ), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
