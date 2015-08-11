@@ -65,6 +65,11 @@ public class Telefone {
 	@Enumerated(EnumType.STRING)
 	private TelefoneTipo tipo;
 
+	// @ManyToOne
+	// @JsonIgnore
+	// @JoinColumn(name = "pessoa_id", nullable = false, updatable = true)
+	// private Pessoa pessoa;
+
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "pessoa_id", nullable = false, updatable = true)
@@ -73,10 +78,9 @@ public class Telefone {
 	public Telefone() {
 	}
 
-	public Telefone(Long id, String numero, Pessoa pessoa) {
+	public Telefone(Long id, String numero) {
 		this.id = id;
 		this.numero = numero;
-		this.pessoa = pessoa;
 	}
 
 	public Long getId() {
@@ -95,13 +99,13 @@ public class Telefone {
 		this.numero = numero;
 	}
 
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
+	// public Pessoa getPessoa() {
+	// return pessoa;
+	// }
+	//
+	// public void setPessoa(Pessoa pessoa) {
+	// this.pessoa = pessoa;
+	// }
 
 	public String getDdd() {
 		return ddd;
@@ -119,7 +123,15 @@ public class Telefone {
 		this.tipo = tipo;
 	}
 
-	public Boolean isPrincipal() {
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public Boolean getPrincipal() {
 		return principal;
 	}
 
@@ -130,8 +142,7 @@ public class Telefone {
 	@Override
 	public String toString() {
 		return "Telefone [id=" + id + ", ddd=" + ddd + ", numero=" + numero
-				+ ", principal=" + principal + ", tipo=" + tipo + ", pessoa="
-				+ pessoa + "]";
+				+ ", principal=" + principal + ", tipo=" + tipo + "]";
 	}
 
 }

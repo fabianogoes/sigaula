@@ -1,4 +1,4 @@
-<div ng-controller="PessoaListController as ctrl">
+<div ng-controller="ProfessorListController as ctrl">
 
 	<jsp:include page="../core/home-description.jsp"></jsp:include>
 
@@ -6,9 +6,9 @@
 		<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Atualizar &nbsp;   
 	</a>
 
-	<a href="#/pessoa/{{ ctrl.module }}/form">
+	<a href="#/professor/form">
 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		Adicionar novo {{ ctrl.moduleNameSingular }}
+		Adicionar novo Professor
 	</a>
 
 
@@ -20,7 +20,9 @@
 					<thead>
 						<tr>
 							<th class="col-md-1">ID</th>
-							<th class="col-md-5">Nome</th>
+							<th class="col-md-2">Nome</th>
+							<th class="col-md-2">CPF/CNPJ</th>
+							<th class="col-md-2">Data Nascimento</th>
 							<th>E-Mail</th>
 							<th class="text-center">Telefones</th>
 							<th class="col-md-1 text-center">
@@ -29,20 +31,22 @@
 						</tr>
 					</thead>
 					<tbody>
-							<tr ng-repeat="pessoa in ctrl.pessoas">
-								<td>{{ pessoa.id }}</td>
-								<td>{{ pessoa.nome }}</td>
-								<td>{{ pessoa.email }}</td>
+							<tr ng-repeat="professor in ctrl.professores">
+								<td>{{ professor.id }}</td>
+								<td>{{ professor.nome }}</td>
+								<td>{{ professor.cpfcnpj }}</td>
+								<td>{{ professor.dataNascimento }}</td>
+								<td>{{ professor.email }}</td>
 								<td class="text-center">
-									<a href ng-click="ctrl.verTelefones( pessoa )" class="btn btn-xs btn-default" title="Ver Telefones...">
+									<a href ng-click="ctrl.verTelefones( professor )" class="btn btn-xs btn-default" title="Ver Telefones...">
 										<span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
 									</a>
 								</td>
 								<td class="text-center">
-									<a href="#/pessoa/{{ ctrl.module }}/{{ pessoa.id }}" class="btn btn-xs btn-default" title="Editar registro...">
+									<a href="#/professor/{{ professor.id }}" class="btn btn-xs btn-default" title="Editar registro...">
 										<span class="glyphicon glyphicon-edit text-primary" aria-hidden="true"></span>
 									</a>
-									<a href ng-click="ctrl.remove( pessoa.id )" class="btn btn-xs btn-default" title="Deletar registro...">
+									<a href ng-click="ctrl.remove( professor.id )" class="btn btn-xs btn-default" title="Deletar registro...">
 										<span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
 									</a>
 								</td>
@@ -63,20 +67,21 @@
 	        	
 		        <table class="table table-condensed">
 		        	<thead>
-		        		<th class="col-md-1 text-center">DDD</th>
-		        		<th class="text-center">Número</th>
-		        		<th class="col-md-2 text-center">Tipo</th>
+		        		<th>Telefone</th>
+		        		<th class="text-center">Tipo</th>
 		        		<th class="col-md-1 text-center">Principal</th>
 		        		<th class="col-md-1 text-center">
 		        			<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
 		        		</th>
 		        	</thead>
 		        	<tbody>
-			      		<tr ng-repeat="telefone in ctrl.pessoa.telefones" class="text-center">
-			      			<td>{{ telefone.ddd }}</td>
-			      			<td>{{ telefone.numero }}</td>
-			      			<td>{{ telefone.tipo }}</td>
+			      		<tr ng-repeat="telefone in ctrl.professor.telefones">
 			      			<td>
+			      				( {{ telefone.ddd }} ) 
+			      			    {{ telefone.numero }}
+			      			</td>
+			      			<td class="text-center">{{ telefone.tipo }}</td>
+			      			<td class="text-center">
 			      				<span class="glyphicon glyphicon-ok text-success" ng-show="{{ telefone.principal }}" aria-hidden="true"></span>
 			      			</td>
 			      			<td>
@@ -92,7 +97,7 @@
 		      
 
 			<div class="panel panel-default">
-			  <div class="panel-heading">Cadastrar novo telefone para {{ ctrl.moduleNameSingular }}: <span class="badge">{{ ctrl.pessoa.nome }}</div>
+			  <div class="panel-heading">Cadastrar novo telefone para Professor: <span class="badge">{{ ctrl.professor.nome }}</div>
 			  <div class="panel-body">
 
 			      <form class="form-inline" name="frmTelefone" ng-submit="ctrl.telefoneSubmit()">

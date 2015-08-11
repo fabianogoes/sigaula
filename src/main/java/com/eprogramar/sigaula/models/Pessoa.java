@@ -23,24 +23,19 @@ SOFTWARE.
  ******************************************************************************/
 package com.eprogramar.sigaula.models;
 
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  * 
@@ -49,9 +44,12 @@ import org.hibernate.annotations.FetchMode;
  *
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public class Pessoa {
 
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(nullable = false, length = 100)
@@ -63,16 +61,13 @@ public class Pessoa {
 	@Column(nullable = false)
 	private String email;
 
-	@Column(columnDefinition = "varchar(20) default 'ALUNO'", nullable = false)
-	@Enumerated(EnumType.STRING)
-	private PessoaTipo tipo;
-
-	@OneToMany(mappedBy = "pessoa", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@Fetch(FetchMode.SUBSELECT)
+	//@Temporal(TemporalType.DATE)
+	@Column(columnDefinition="varchar(10)")
+	private String dataNascimento;
+	
+	@OneToMany(mappedBy="pessoa", fetch=FetchType.EAGER)
 	private List<Telefone> telefones;
 
-	@Temporal(TemporalType.DATE)
-	private Date dataNascimento;
 
 	public Pessoa() {
 	}
@@ -82,14 +77,21 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public Pessoa(Long id, String nome, String email, PessoaTipo tipo,
-			List<Telefone> telefones, String cpfcnpj) {
-		this(id, nome);
+	public Pessoa(Long id, String nome, String cpfcnpj, String email, String dataNascimento) {
+		this.id = id;
+		this.nome = nome;
 		this.cpfcnpj = cpfcnpj;
 		this.email = email;
-		this.tipo = tipo;
-		this.telefones = telefones;
+		this.dataNascimento = dataNascimento;
 	}
+
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+	
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
+	}	
 
 	public Long getId() {
 		return id;
@@ -115,22 +117,6 @@ public class Pessoa {
 		this.email = email;
 	}
 
-	public List<Telefone> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
-	}
-
-	public PessoaTipo getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(PessoaTipo tipo) {
-		this.tipo = tipo;
-	}
-
 	public String getCpfcnpj() {
 		return cpfcnpj;
 	}
@@ -139,19 +125,18 @@ public class Pessoa {
 		this.cpfcnpj = cpfcnpj;
 	}
 
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
 	@Override
 	public String toString() {
 		return "Pessoa [id=" + id + ", nome=" + nome + ", cpfcnpj=" + cpfcnpj
-				+ ", email=" + email + ", tipo=" + tipo + ", telefones="
-				+ telefones + ", dataNascimento=" + dataNascimento + "]";
+				+ ", email=" + email + ", dataNascimento=" + dataNascimento + "]";
 	}
 
 }
