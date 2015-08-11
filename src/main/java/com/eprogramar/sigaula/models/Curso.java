@@ -94,6 +94,9 @@ public class Curso {
 
 	private String observacoes;
 
+//	@OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
+//	private List<Turma> turmas;
+
 	public Curso() {
 	}
 
@@ -185,6 +188,14 @@ public class Curso {
 	public void setCargaHoraria(Integer cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
 	}
+
+//	public List<Turma> getTurmas() {
+//		return turmas;
+//	}
+//
+//	public void setTurmas(List<Turma> turmas) {
+//		this.turmas = turmas;
+//	}
 
 	@Override
 	public String toString() {

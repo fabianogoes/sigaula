@@ -1,5 +1,7 @@
 package com.eprogramar.sigaula.controllers;
 
+import java.util.List;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,30 +13,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.eprogramar.sigaula.models.Curso;
-import com.eprogramar.sigaula.repositories.CursoRepository;
+import com.eprogramar.sigaula.models.Aluno;
+import com.eprogramar.sigaula.models.Turma;
+import com.eprogramar.sigaula.repositories.TelefoneRepository;
+import com.eprogramar.sigaula.repositories.TurmaRepository;
 
 @Controller
-@RequestMapping("/curso")
-public class CursoController {
+@RequestMapping("/turma")
+public class TurmaController {
 
 	@Autowired
-	private CursoRepository cursoRepository;
+	private TurmaRepository turmaRepository;
+	
+	@Autowired
+	private TelefoneRepository telefoneRepository;
 	
 	@RequestMapping("pageList")
 	public String pageList(){
-		return "curso/curso-list";
+		return "turma/turma-list";
 	}
 
 	@RequestMapping("/pageForm")
 	public String pageForm(){
-		return "curso/curso-detail";
+		return "turma/turma-detail";
 	}
 	
 	@RequestMapping(produces="application/json; charset=utf-8")
 	public @ResponseBody ResponseEntity<String> findAll(){
 		try {
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.cursoRepository.findAll()), HttpStatus.CREATED);
+			Iterable<Turma> turmas = this.turmaRepository.findAll();
+			for (Turma turma : turmas) {
+				System.out.println( "**************************************" );
+				System.out.println( turma.getCurso().getNome() );
+				System.out.println( "**************************************" );
+				for (Aluno aluno : turma.getAlunos()) {
+					System.out.println( aluno );
+				}
+			}
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(turmas), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -42,11 +58,12 @@ public class CursoController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json; charset=utf-8", produces="application/json; charset=utf-8")
-	public @ResponseBody ResponseEntity<String> save(@RequestBody Curso curso){
+	public @ResponseBody ResponseEntity<String> save(@RequestBody Turma turma){
 		try {
-			System.out.println( curso );
-			this.cursoRepository.save( curso );
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.cursoRepository.findAll()), HttpStatus.CREATED);
+			System.out.println( "Turma Save = "+turma );
+			this.turmaRepository.save( turma );
+			List<Turma> turmas = (List<Turma>) this.turmaRepository.findAll();
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(turmas), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -56,7 +73,7 @@ public class CursoController {
 	@RequestMapping(value="/{id}", produces="application/json; charset=utf-8")
 	public @ResponseBody ResponseEntity<String> get(@PathVariable("id") Long id){
 		try {
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString( this.cursoRepository.findOne( id ) ), HttpStatus.CREATED);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString( this.turmaRepository.findOne( id ) ), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -66,8 +83,8 @@ public class CursoController {
 	@RequestMapping(value="/{id}/delete", produces="application/json; charset=utf-8")
 	public @ResponseBody ResponseEntity<String> delete(@PathVariable("id") Long id){
 		try {
-			this.cursoRepository.delete( id );
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.cursoRepository.findAll()), HttpStatus.CREATED);
+			this.turmaRepository.delete( id );
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(this.turmaRepository.findAll()), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

@@ -23,15 +23,16 @@
  ******************************************************************************/
 package com.eprogramar.sigaula.models;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  * 
@@ -46,42 +47,45 @@ public class Turma {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToOne
-	private Pessoa professor;
+	// @Temporal(TemporalType.DATE)
+	private String dataInicio;
 
-	@OneToOne
-	private Pessoa aluno;
+	// @Temporal(TemporalType.DATE)
+	private String dataFinal;
 
-	@Temporal(TemporalType.DATE)
-	private Date dataInicio;
+	// @Temporal(TemporalType.TIME)
+	private String horaInicioAula;
 
-	@Temporal(TemporalType.DATE)
-	private Date dataFinal;
+	// @Temporal(TemporalType.TIME)
+	private String horaFimAula;
 
-	@Temporal(TemporalType.TIME)
-	private Date horaInicioAula;
+	@ManyToOne
+	@JoinColumn(name = "professor_id", nullable = false, updatable = true)
+	private Professor professor;
 
-	@Temporal(TemporalType.TIME)
-	private Date horaFimAula;
+	@ManyToOne
+	@JoinColumn(name = "curso_id", nullable = false, updatable = true)
+	private Curso curso;
+
+	@ManyToMany(fetch=FetchType.EAGER)
+//	@JsonIgnore
+	//	@JoinTable(name = "turma_aluno", joinColumns = { @JoinColumn(name = "aluno_id") }, inverseJoinColumns = { @JoinColumn(name = "turma_id") })
+	private List<Aluno> alunos;
+
 
 	public Turma() {
 	}
 
-	public Turma(Long id, Pessoa professor, Pessoa aluno) {
+	public Turma(Long id, String dataInicio, String dataFinal,
+			String horaInicioAula, String horaFimAula, Professor professor) {
 		this.id = id;
-		this.professor = professor;
-		this.aluno = aluno;
-	}
-
-	public Turma(Long id, Pessoa professor, Pessoa aluno, Date dataInicio,
-			Date dataFinal, Date horaInicioAula, Date horaFimAula) {
-		this(id, professor, aluno);
 		this.dataInicio = dataInicio;
 		this.dataFinal = dataFinal;
 		this.horaInicioAula = horaInicioAula;
 		this.horaFimAula = horaFimAula;
+		this.professor = professor;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -90,60 +94,68 @@ public class Turma {
 		this.id = id;
 	}
 
-	public Pessoa getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Pessoa professor) {
-		this.professor = professor;
-	}
-
-	public Pessoa getAluno() {
-		return aluno;
-	}
-
-	public void setAluno(Pessoa aluno) {
-		this.aluno = aluno;
-	}
-
-	public Date getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(Date dataInicio) {
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
-	public Date getDataFinal() {
+	public String getDataFinal() {
 		return dataFinal;
 	}
 
-	public void setDataFinal(Date dataFinal) {
+	public void setDataFinal(String dataFinal) {
 		this.dataFinal = dataFinal;
 	}
 
-	public Date getHoraInicioAula() {
+	public String getHoraInicioAula() {
 		return horaInicioAula;
 	}
 
-	public void setHoraInicioAula(Date horaInicioAula) {
+	public void setHoraInicioAula(String horaInicioAula) {
 		this.horaInicioAula = horaInicioAula;
 	}
 
-	public Date getHoraFimAula() {
+	public String getHoraFimAula() {
 		return horaFimAula;
 	}
 
-	public void setHoraFimAula(Date horaFimAula) {
+	public void setHoraFimAula(String horaFimAula) {
 		this.horaFimAula = horaFimAula;
+	}
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 	@Override
 	public String toString() {
-		return "Turma [id=" + id + ", professor=" + professor + ", aluno="
-				+ aluno + ", dataInicio=" + dataInicio + ", dataFinal="
-				+ dataFinal + ", horaInicioAula=" + horaInicioAula
-				+ ", horaFimAula=" + horaFimAula + "]";
+		return "Turma [id=" + id + ", dataInicio=" + dataInicio
+				+ ", dataFinal=" + dataFinal + ", horaInicioAula="
+				+ horaInicioAula + ", horaFimAula=" + horaFimAula
+				+ ", professor=" + professor + "]";
 	}
 
 }

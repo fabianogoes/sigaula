@@ -1,4 +1,4 @@
-app.controller('CursoListController', ['$http', '$location', '$window', '$routeParams',
+app.controller('TurmaListController', ['$http', '$location', '$window', '$routeParams',
                                    function($http, $location, $window, $routeParams){
 	var self = this;
 	
@@ -13,25 +13,26 @@ app.controller('CursoListController', ['$http', '$location', '$window', '$routeP
 		$("#id_menu_sobre").removeClass( "active" );
 		$("#id_menu_professor").removeClass( "active" );
 		$("#id_menu_aluno").removeClass( "active" );
-		$("#id_menu_turma").removeClass( "active" );
-		$("#id_menu_curso").addClass( "active" );
+		$("#id_menu_curso").removeClass( "active" );
+		$("#id_menu_turma").addClass( "active" );
 		
 		/**
 		 * id_moduleDescription: seletor dentro do arquivo > home-description.jsp
 		 */
-		$("#id_moduleDescription").html( "Cadastro de Cursos" );
+		$("#id_moduleDescription").html( "Cadastro de Turmas" );
 		self.list();
 	}
 
 	self.list = function(){
-		$http.get( SERVER_APP + '/curso' ).then(function(resp){
-			self.cursos = resp.data;
+		$http.get( SERVER_APP + '/turma' ).then(function(resp){
+			self.turmas = resp.data;
+			console.log( self.turmas[0] );
 		});
 	}
 	
 	self.remove = function(id){
-		$http.get( SERVER_APP + '/curso/'+id+'/delete').then(function(resp){
-			self.cursos = resp.data;
+		$http.get( SERVER_APP + '/turma/'+id+'/delete').then(function(resp){
+			self.turmas = resp.data;
 		});
 	}
 	

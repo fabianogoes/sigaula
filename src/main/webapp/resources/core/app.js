@@ -1,8 +1,8 @@
 var app = angular.module('app', ['ngRoute']);
 
-//var SERVER_APP = "/sigaula";
+var SERVER_APP = "/sigaula";
 
-var SERVER_APP = "https://sigaula.herokuapp.com";
+//var SERVER_APP = "https://sigaula.herokuapp.com";
 
 //app.$inject = ["$rootScope", "$window"];
 //app.run(["$rootScope", "$window", function ($rootScope, $window) {
@@ -29,17 +29,21 @@ app.config(['$routeProvider', function($routeProvider) {
                 /**
                  * CRUD Aluno
                  */
-                .when('/pessoa/aluno', { templateUrl: SERVER_APP + '/pessoa/pageList'})
-                .when('/pessoa/aluno/form', { templateUrl: SERVER_APP + '/pessoa/pageForm'})
-                .when('/pessoa/aluno/:id', { templateUrl: SERVER_APP + '/pessoa/pageForm'})
+                .when('/aluno', { templateUrl: SERVER_APP + '/aluno/pageList'})
+                .when('/aluno/form', { templateUrl: SERVER_APP + '/aluno/pageForm'})
+                .when('/aluno/:id', { templateUrl: SERVER_APP + '/aluno/pageForm'})
                 
-                .when('/pessoa/professor', { templateUrl: SERVER_APP + '/pessoa/pageList'})
-                .when('/pessoa/professor/form', { templateUrl: SERVER_APP + '/pessoa/pageForm'})
-                .when('/pessoa/professor/:id', { templateUrl: SERVER_APP + '/pessoa/pageForm'})
+                .when('/professor', { templateUrl: SERVER_APP + '/professor/pageList'})
+                .when('/professor/form', { templateUrl: SERVER_APP + '/professor/pageForm'})
+                .when('/professor/:id', { templateUrl: SERVER_APP + '/professor/pageForm'})
                 
                 .when('/curso', { templateUrl: SERVER_APP + '/curso/pageList'})
                 .when('/curso/form', { templateUrl: SERVER_APP + '/curso/pageForm'})
                 .when('/curso/:id', { templateUrl: SERVER_APP + '/curso/pageForm'})                
+                
+                .when('/turma', { templateUrl: SERVER_APP + '/turma/pageList'})
+                .when('/turma/form', { templateUrl: SERVER_APP + '/turma/pageForm'})
+                .when('/turma/:id', { templateUrl: SERVER_APP + '/turma/pageForm'})                
                 
                 .otherwise({redirectTo: '/'});
 }]);  

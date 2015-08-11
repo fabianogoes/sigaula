@@ -13,6 +13,7 @@ app.controller('CursoDetailController', ['$http', '$location', '$window', '$rout
 		$("#id_menu_sobre").removeClass( "active" );
 		$("#id_menu_professor").removeClass( "active" );
 		$("#id_menu_aluno").removeClass( "active" );
+		$("#id_menu_turma").removeClass( "active" );
 		$("#id_menu_curso").addClass( "active" );		
 		
 		/**

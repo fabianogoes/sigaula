@@ -8,7 +8,7 @@
 	  	</div>
 	  	<div class="panel-body">
 	    	
-	    	<form ng-submit="ctrl.submit()" name="frmfrmCurso">
+	    	<form ng-submit="ctrl.submit()" name="frmCurso">
 
 	    		<div class="row">
 	    			<div class="col-md-4">
