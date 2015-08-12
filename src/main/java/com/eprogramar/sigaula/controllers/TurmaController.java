@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eprogramar.sigaula.models.Aluno;
 import com.eprogramar.sigaula.models.Turma;
+import com.eprogramar.sigaula.repositories.AlunoRepository;
 import com.eprogramar.sigaula.repositories.TelefoneRepository;
 import com.eprogramar.sigaula.repositories.TurmaRepository;
 
@@ -27,6 +28,9 @@ public class TurmaController {
 	
 	@Autowired
 	private TelefoneRepository telefoneRepository;
+	
+	@Autowired
+	private AlunoRepository alunoRepository;
 	
 	@RequestMapping("pageList")
 	public String pageList(){
@@ -64,6 +68,37 @@ public class TurmaController {
 			this.turmaRepository.save( turma );
 			List<Turma> turmas = (List<Turma>) this.turmaRepository.findAll();
 			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(turmas), HttpStatus.CREATED);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value="/{idTurma}/aluno/{idAluno}", method=RequestMethod.GET, produces="application/json; charset=utf-8")
+	public @ResponseBody ResponseEntity<String> save(@PathVariable("idTurma") Long idTurma, @PathVariable("idAluno") Long idAluno){
+		try {
+			System.out.println( "Aluno = "+idAluno );
+			System.out.println( "Turma = "+idTurma );
+			
+			Aluno aluno = this.alunoRepository.findOne( idAluno );
+			Turma turma = this.turmaRepository.findOne( idTurma );
+			
+			System.out.println( "***************************************" );
+			System.out.println( "Size Alunos = "+turma.getAlunos().size() );
+			System.out.println( "***************************************" );
+			
+			//if( turma.getAlunos().size() > 0 ){
+			turma.getAlunos().add( aluno ); 
+			//}else{
+			//	List<Aluno> alunos = new ArrayList<Aluno>();
+			//	alunos.add(aluno);
+			//	turma.setAlunos(alunos);
+			//}
+			
+			this.turmaRepository.save( turma );
+			
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(turma), HttpStatus.CREATED);
+			//return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(null), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

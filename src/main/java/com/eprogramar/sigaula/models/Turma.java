@@ -23,7 +23,7 @@
  ******************************************************************************/
 package com.eprogramar.sigaula.models;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,8 +31,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * 
@@ -68,9 +71,10 @@ public class Turma {
 	private Curso curso;
 
 	@ManyToMany(fetch=FetchType.EAGER)
-//	@JsonIgnore
-	//	@JoinTable(name = "turma_aluno", joinColumns = { @JoinColumn(name = "aluno_id") }, inverseJoinColumns = { @JoinColumn(name = "turma_id") })
-	private List<Aluno> alunos;
+	//@Fetch(FetchMode.SUBSELECT)
+	@JsonIgnore
+	@JoinTable(name = "turma_aluno", joinColumns = { @JoinColumn(name = "turma_id") }, inverseJoinColumns = { @JoinColumn(name = "aluno_id") })
+	private Set<Aluno> alunos;
 
 
 	public Turma() {
@@ -134,11 +138,11 @@ public class Turma {
 		this.professor = professor;
 	}
 
-	public List<Aluno> getAlunos() {
+	public Set<Aluno> getAlunos() {
 		return alunos;
 	}
 
-	public void setAlunos(List<Aluno> alunos) {
+	public void setAlunos(Set<Aluno> alunos) {
 		this.alunos = alunos;
 	}
 

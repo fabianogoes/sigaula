@@ -33,8 +33,16 @@
 					</thead>
 					<tbody>
 							<tr ng-repeat="turma in ctrl.turmas" class="text-center">
-								<td>{{ turma.id }}</td>
-								<td>{{ turma.curso.nome }}</td>
+								<td>
+									<a href="#/turma/{{ turma.id }}" class="btn btn-xs btn-default" title="Editar registro...">
+										{{ turma.id }}
+									</a>
+								</td>
+								<td>
+									<a href="#/turma/{{ turma.id }}" class="btn btn-xs btn-default" title="Editar registro..."> 
+										{{ turma.curso.nome }} 
+									</a>
+								</td>
 								<td>{{ turma.professor.nome }}</td>
 								<td>{{ turma.dataInicio }}</td>
 								<td>{{ turma.dataFinal }}</td>

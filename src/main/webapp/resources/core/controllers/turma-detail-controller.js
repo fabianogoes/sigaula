@@ -31,6 +31,10 @@ app.controller('TurmaDetailController', ['$http', '$location', '$window', '$rout
 			self.professores = resp.data;
 		});
 		
+		$http.get( SERVER_APP + '/aluno').then(function(resp){
+			self.alunosFull = resp.data;
+		});		
+		
 		if( $routeParams.id != undefined ){
 			$http.get( SERVER_APP + '/turma/'+$routeParams.id ).then(function(resp){
 				self.turma = resp.data;
@@ -39,6 +43,16 @@ app.controller('TurmaDetailController', ['$http', '$location', '$window', '$rout
 		
 	}
 
+	self.setAlunoToTurma = function( turma, aluno ){
+		console.log( aluno );
+		console.log( turma );
+		$http.get( SERVER_APP + '/turma/'+turma.id+'/aluno/'+aluno.id ).then(function(resp){
+			//$window.location.href = SERVER_APP + "/#/turma/";
+			self.turma = resp.data;
+			console.log( "response = "+self.turma );
+		});		
+	}
+	
 	self.submit = function(){
 		console.log( self.turma );
 		$http.post( SERVER_APP + '/turma/', self.turma).then(function(resp){
