@@ -43,7 +43,7 @@ in VM arguments add:
 ```   
 
 **Aplicação rodando no Heroku:**   
-[Sigaula]: [0]
+[Sigaula][0]
 
 
-[0]: https://sigaula.herokuapp.com/
+[0]: https://sigaula.herokuapp.com/ "Sigaula"
