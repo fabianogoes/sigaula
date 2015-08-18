@@ -26,7 +26,6 @@ app.controller('TurmaListController', ['$http', '$location', '$window', '$routeP
 	self.list = function(){
 		$http.get( SERVER_APP + '/turma' ).then(function(resp){
 			self.turmas = resp.data;
-			console.log( self.turmas[0] );
 		});
 	}
 	

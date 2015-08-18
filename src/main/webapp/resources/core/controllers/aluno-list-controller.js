@@ -29,7 +29,6 @@ app.controller('AlunoListController', ['$http', '$location', '$window', '$routeP
 	self.list = function(){
 		$http.get( SERVER_APP + '/aluno' ).then(function(resp){
 			self.alunos = resp.data;
-			console.log( "list()...." );
 		});
 	}
 	
