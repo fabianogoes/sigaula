@@ -2,7 +2,10 @@ app.controller('TurmaDetailController', ['$http', '$location', '$window', '$rout
                                  function($http, $location, $window, $routeParams){
 	var self = this;
 	
-	var init = function(){
+	self.curso = {};
+	self.professor = {};
+	self.alunos = [];
+	self.init = function(){
 		
 		/**
 		 * 
@@ -23,43 +26,70 @@ app.controller('TurmaDetailController', ['$http', '$location', '$window', '$rout
 		 */
 		$("#id_moduleDescription").html( "Cadastro de Turmas" );
 		
-		$http.get( SERVER_APP + '/curso').then(function(resp){
-			self.cursos = resp.data;
-		});
 		
-		$http.get( SERVER_APP + '/professor').then(function(resp){
-			self.professores = resp.data;
-		});
+		if( $routeParams.id != undefined ){
+			$http.get( SERVER_APP + '/turma/'+$routeParams.id ).then(function(resp){
+				//console.log( "Turma = " + JSON.stringify(resp.data) );
+				self.turma = resp.data;
+				self.alunos = self.turma.alunos;
+				console.log( self.alunos );
+			}).then(function() {
+                $http.get( SERVER_APP + '/curso' ).then(function(resp){
+                	self.cursos = resp.data; 
+                    for(var i = 0; self.cursos.length-1; i++) {
+                    	if (self.turma.curso.id == self.cursos[i].id) {
+                    		self.turma.curso = self.cursos[i];
+                    		break;
+                        }
+                    }
+                });                     
+			}).then(function(){
+				$http.get( SERVER_APP + '/professor' ).then(function(resp){
+					self.professores = resp.data; 
+                    for(var i = 0; self.professores.length-1; i++) {
+                            if (self.turma.professor.id == self.professores[i].id) {
+                                    self.turma.professor = self.professores[i];
+                                    break;
+                            }
+                    }					
+				});
+			});
+		}		
+		
+//		$http.get( SERVER_APP + '/curso').then(function(resp){
+//			self.cursos = resp.data;
+//		});
+		
+//		$http.get( SERVER_APP + '/professor').then(function(resp){
+//			self.professores = resp.data;
+//		});
 		
 		$http.get( SERVER_APP + '/aluno').then(function(resp){
 			self.alunosFull = resp.data;
 		});		
 		
-		if( $routeParams.id != undefined ){
-			$http.get( SERVER_APP + '/turma/'+$routeParams.id ).then(function(resp){
-				self.turma = resp.data;
-			});
-		}
 		
-	}
+	};
 
 	self.setAlunoToTurma = function( turma, aluno ){
 		console.log( aluno );
 		console.log( turma );
 		$http.get( SERVER_APP + '/turma/'+turma.id+'/aluno/'+aluno.id ).then(function(resp){
 			//$window.location.href = SERVER_APP + "/#/turma/";
-			self.turma = resp.data;
-			console.log( "response = "+self.turma );
+			//console.log( "response = "+JSON.stringify(resp.data) );
+			//console.log( resp.data );
+			//self.turma = resp.data;
+			self.init();
 		});		
-	}
+	};
 	
 	self.submit = function(){
 		console.log( self.turma );
 		$http.post( SERVER_APP + '/turma/', self.turma).then(function(resp){
 			$window.location.href = SERVER_APP + "/#/turma/";
 		});
-	}
+	};
 	
 	
-	init();
+	self.init();
 }]);

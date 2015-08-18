@@ -108,7 +108,11 @@ public class TurmaController {
 	@RequestMapping(value="/{id}", produces="application/json; charset=utf-8")
 	public @ResponseBody ResponseEntity<String> get(@PathVariable("id") Long id){
 		try {
-			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString( this.turmaRepository.findOne( id ) ), HttpStatus.CREATED);
+			Turma turma = this.turmaRepository.findOne( id );
+			System.out.println( ">>> Alunos Size = " + turma.getAlunos().size() );
+			System.out.println( ">>> Alunos = "+turma.getAlunos() );
+			
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString( turma ), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

@@ -14,23 +14,29 @@
 	    			<div class="col-md-6">
 						<div class="form-group">
 			    			<label>Curso:</label>
+			    			<!-- 
 			    			<select name="txtCurso" 
 			    			       class="form-control" 
 			    			       ng-model="ctrl.turma.curso.id"
 			    			       required>
 			    				<option ng:repeat="curso in ctrl.cursos" value="{{curso.id}}">{{curso.nome}}</option>
 			    			</select>
+			    			-->
+			    			<select ng-model="ctrl.turma.curso" ng-options="c.nome for c in ctrl.cursos" class="form-control"></select>
 			  			</div>
 	    			</div>
 	    			<div class="col-md-6">
 						<div class="form-group">
 			    			<label>Professor:</label>
+			    			<!-- 
 			    			<select name="txtProfessor" 
 			    			       class="form-control" 
 			    			       ng-model="ctrl.turma.professor.id"
 			    			       required>
 			    				<option ng:repeat="professor in ctrl.professores" value="{{professor.id}}">{{professor.nome}}</option>
 			    			</select>
+			    			-->
+			    			<select ng-model="ctrl.turma.professor" ng-options="p.nome for p in ctrl.professores" class="form-control"></select>
 			  			</div>
 	    			</div>
 	    		</div>

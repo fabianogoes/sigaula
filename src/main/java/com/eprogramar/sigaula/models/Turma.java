@@ -35,8 +35,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 /**
  * 
  * @author Fabiano Góes - 05/08/2015
@@ -72,7 +70,7 @@ public class Turma {
 
 	@ManyToMany(fetch=FetchType.EAGER)
 	//@Fetch(FetchMode.SUBSELECT)
-	@JsonIgnore
+	//@JsonIgnore
 	@JoinTable(name = "turma_aluno", joinColumns = { @JoinColumn(name = "turma_id") }, inverseJoinColumns = { @JoinColumn(name = "aluno_id") })
 	private Set<Aluno> alunos;
 
