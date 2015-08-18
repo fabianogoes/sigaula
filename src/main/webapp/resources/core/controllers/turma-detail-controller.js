@@ -54,15 +54,16 @@ app.controller('TurmaDetailController', ['$http', '$location', '$window', '$rout
                     }					
 				});
 			});
+		} else{
+			$http.get( SERVER_APP + '/curso').then(function(resp){
+				self.cursos = resp.data;
+			});
+				
+			$http.get( SERVER_APP + '/professor').then(function(resp){
+				self.professores = resp.data;
+			});
 		}		
 		
-//		$http.get( SERVER_APP + '/curso').then(function(resp){
-//			self.cursos = resp.data;
-//		});
-		
-//		$http.get( SERVER_APP + '/professor').then(function(resp){
-//			self.professores = resp.data;
-//		});
 		
 		$http.get( SERVER_APP + '/aluno').then(function(resp){
 			self.alunosFull = resp.data;
