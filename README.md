@@ -1,7 +1,29 @@
 # SIGaula
 ### SIGaula - Sistema Integrado para Gestão de Aulas
 
-*Configure Variable Environment in Project Run*   
+**Tecnologias envolvidas:**   
+* Java EE 
+* JPA/Hibernate
+* Spring MVC
+* Spring Transaction
+* Spring IoC
+* Spring Data
+* HTML 
+* CSS 
+* JS
+* JQuery
+* AngularJS
+* Twitter Bootstrap
+* MySQL
+* Eclipse IDE
+* Maven 	
+* Tomcat Tomcat
+* Git
+* Github 	
+* Heroku
+
+
+**Configuração de Variaveis de Ambiente no Eclipse**   
 ``` 
 Run > Run Configurations 
 
