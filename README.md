@@ -41,3 +41,9 @@ in VM arguments add:
 -DDATABASE_URL="mysql://root:root@localhost/sigaula"
 -DDATASOURCE_ENV="dsDev"
 ```   
+
+**Aplicação rodando no Heroku:**   
+[Sigaula]: [0]
+
+
+[0]: https://sigaula.herokuapp.com/
