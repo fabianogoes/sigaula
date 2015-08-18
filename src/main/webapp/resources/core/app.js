@@ -2,6 +2,9 @@ var app = angular.module('app', ['ngRoute']);
 
 //var SERVER_APP = "/sigaula";
 
+//***********************************************
+// para deploy no heroku
+//***********************************************
 var SERVER_APP = "https://sigaula.herokuapp.com";
 
 //app.$inject = ["$rootScope", "$window"];
