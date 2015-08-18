@@ -22,6 +22,7 @@
 * Github 	
 * Heroku
 
+=====================================================   
 
 **Configuração de Variaveis de Ambiente no Eclipse**   
 ``` 
@@ -41,6 +42,8 @@ in VM arguments add:
 -DDATABASE_URL="mysql://root:root@localhost/sigaula"
 -DDATASOURCE_ENV="dsDev"
 ```   
+
+=====================================================   
 
 **Aplicação rodando no Heroku:**   
 [Sigaula][0]
