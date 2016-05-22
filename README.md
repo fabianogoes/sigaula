@@ -82,7 +82,7 @@ Open Source
 [0]: https://sigaula.herokuapp.com/ "Sigaula"
 [1]: https://raw.githubusercontent.com/fabianogoes/sigaula/master/doc/github-fork-btn.png
 [2]: https://github.com/fabianogoes/sigaula/fork
-[3]: https://raw.githubusercontent.com/fabianogoes/sigaula/master/LICENSE
-[4]: https://raw.githubusercontent.com/fabianogoes/sigaula/master/doc/mit-license.png
+[3]: https://raw.githubusercontent.com/fabianogoes/sigaula/master/doc/m
+[4]: https://raw.githubusercontent.com/fabianogoes/sigaula/master/LICENSEit-license.png
 [5]: https://raw.githubusercontent.com/fabianogoes/sigaula/master/doc/opensource-iniciative.png
 [6]: https://en.wikipedia.org/wiki/Open_Source_Initiative
